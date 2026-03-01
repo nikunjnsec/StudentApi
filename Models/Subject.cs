@@ -10,5 +10,5 @@ public class Subject
     public int ClassId { get; set; }
 
     [JsonIgnore]
-    public Class Class { get; set; } = null!;
+    public Class? Class { get; set; }
 }
