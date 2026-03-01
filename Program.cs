@@ -32,7 +32,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularDev", policy =>
-        policy.WithOrigins("http://localhost:4200")
+        policy.WithOrigins(
+                  "http://localhost:4200",
+                  "https://witty-dune-0e4465c0f.1.azurestaticapps.net")
               .AllowAnyHeader()
               .AllowAnyMethod());
 });
