@@ -12,6 +12,7 @@ public class AppDbContext : DbContext
     public DbSet<Class> Classes => Set<Class>();
     public DbSet<StudentClassXref> StudentClassXrefs => Set<StudentClassXref>();
     public DbSet<Subject> Subjects => Set<Subject>();
+    public DbSet<StudentPhoto> StudentPhotos => Set<StudentPhoto>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -29,6 +30,16 @@ public class AppDbContext : DbContext
             .HasOne<Class>()
             .WithMany()
             .HasForeignKey(x => x.ClassId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // One-to-one: Student has one Photo
+        modelBuilder.Entity<StudentPhoto>()
+            .HasKey(p => p.StudentId);
+
+        modelBuilder.Entity<StudentPhoto>()
+            .HasOne<Student>()
+            .WithOne()
+            .HasForeignKey<StudentPhoto>(p => p.StudentId)
             .OnDelete(DeleteBehavior.Cascade);
 
         // One-to-one: Class has one Subject, Subject belongs to one Class
