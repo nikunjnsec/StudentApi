@@ -9,4 +9,7 @@ public class Student
     public DateTime DateOfBirth { get; set; }
     public string? PhoneNumber { get; set; }
     public DateTime EnrolledAt { get; set; } = DateTime.UtcNow;
+    public string? ParentFirstName { get; set; }
+    public string? ParentLastName { get; set; }
+    public string? ParentContactInfo { get; set; }
 }
